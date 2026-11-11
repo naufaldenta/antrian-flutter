@@ -31,9 +31,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
         all.where((t) => queue.statusOf(t) == TicketStatus.dibatalkan).toList(),
       _ => all,
     };
-    final doneCount = all
-        .where((t) => queue.statusOf(t) == TicketStatus.selesai)
-        .length;
+    final header = switch (_filter) {
+      'selesai' => '${items.length} kunjungan selesai',
+      'batal' => '${items.length} kunjungan dibatalkan',
+      _ => '${items.length} kunjungan',
+    };
 
     return IosPage(
       title: 'Riwayat',
@@ -60,7 +62,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           )
         else
           IosSection(
-            header: '$doneCount kunjungan selesai',
+            header: header,
             dividerIndent: 58,
             children: [
               for (final t in items)

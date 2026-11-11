@@ -442,7 +442,7 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       height: 52,
       child: CupertinoButton(
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         color: color,
         disabledColor: color.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(14),
@@ -456,9 +456,13 @@ class PrimaryButton extends StatelessWidget {
                     Icon(icon, color: Colors.white, size: 20),
                     const SizedBox(width: 8),
                   ],
-                  Text(
-                    label,
-                    style: AppText.headline.copyWith(color: Colors.white),
+                  Flexible(
+                    child: Text(
+                      label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppText.headline.copyWith(color: Colors.white),
+                    ),
                   ),
                 ],
               ),
